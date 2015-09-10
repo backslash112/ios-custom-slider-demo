@@ -21,10 +21,10 @@ class ViewController: UIViewController {
     var slider: RangeSlider!
     func initRangeSlider() {
         self.slider = RangeSlider()
-        self.slider.minimumValue = 2
+        self.slider.minimumValue = 0
         self.slider.selectedMinimumValue = 2
-        self.slider.maximumValue = 10
-        self.slider.selectedMaximumValue = 10
+        self.slider.maximumValue = 500
+        self.slider.selectedMaximumValue = 500
         slider.minimumRange = 1
         slider.initWithFrame2(frame: CGRectMake(0, (self.view.frame.height-50)/2, self.view.frame.width, 50))
         

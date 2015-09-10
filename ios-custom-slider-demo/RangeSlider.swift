@@ -118,8 +118,17 @@ class RangeSlider: UIControl {
         let touchPoint = touch.locationInView(self)
         if _minThumbOn {
             let minimumX = self.xForValue(self.minimumValue)
+            print("minimumX \(minimumX)")
+            print("selectedMaximumValue \(selectedMaximumValue)")
+            print("selectedMaximumValue - minimumRange \(selectedMaximumValue - minimumRange)")
+            print("self.xForValue(selectedMaximumValue - minimumRange) \(self.xForValue(selectedMaximumValue - minimumRange))")
+            print("touchPoint.x \(touchPoint.x)")
+            print("min(touchPoint.x,self.xForValue(selectedMaximumValue - minimumRange)) \(min(touchPoint.x,self.xForValue(selectedMaximumValue - minimumRange)))")
+            
             let right = min(touchPoint.x,self.xForValue(selectedMaximumValue - minimumRange))
+            print("right \(right)")
             let left = max(minimumX, right)
+            print("left \(left)")
             _minThumb.center = CGPointMake(left, _minThumb.center.y)
             
             self.selectedMinimumValue = self.valueForX(_minThumb.center.x)
