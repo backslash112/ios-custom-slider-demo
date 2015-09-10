@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         self.slider.selectedMinimumValue = 2
         self.slider.maximumValue = 10
         self.slider.selectedMaximumValue = 10
-        slider.minimumRange = 2
+        slider.minimumRange = 1
         slider.initWithFrame2(frame: CGRectMake(0, (self.view.frame.height-50)/2, self.view.frame.width, 50))
         
     }

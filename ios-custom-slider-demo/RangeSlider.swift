@@ -35,11 +35,13 @@ class RangeSlider: UIControl {
     var _trackBackground: UIImageView!
     
     func xForValue(value: CGFloat) -> CGFloat {
-        let baseWidth = self.frame.size.width - _padding*2
-        let range = maximumValue - minimumValue
-        let locationRange = (value - minimumValue)/range
-        return baseWidth * locationRange + _padding
+        return  (self.frame.size.width - _padding*2) * (value - minimumValue) / (maximumValue - minimumValue) + _padding
      }
+    
+    
+    func valueForX(x: CGFloat) -> CGFloat {
+        return ((x - _padding) / (self.frame.size.width - _padding*2)) * (maximumValue - minimumRange) + minimumValue
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -90,4 +92,59 @@ class RangeSlider: UIControl {
         _maxThumb.center = CGPointMake(self.xForValue(self.selectedMaximumValue), self.frame.size.height/2)
         self.addSubview(_maxThumb)
     }
+    
+    // MARK: - Tracking Touch
+    
+    override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
+        let touchPoint = touch.locationInView(self)
+        if CGRectContainsPoint(_minThumb.frame, touchPoint) {
+            _minThumbOn = true
+        } else if CGRectContainsPoint(_maxThumb.frame, touchPoint) {
+            _maxThumbOn = true
+        }
+        return true
+    }
+    
+    override func endTrackingWithTouch(touch: UITouch?, withEvent event: UIEvent?) {
+        _minThumbOn = false
+        _maxThumbOn = false
+    }
+    
+    override func continueTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
+        if !_minThumbOn && !_maxThumbOn {
+            return true
+        }
+        
+        let touchPoint = touch.locationInView(self)
+        if _minThumbOn {
+            let minimumX = self.xForValue(self.minimumValue)
+            let right = min(touchPoint.x,self.xForValue(selectedMaximumValue - minimumRange))
+            let left = max(minimumX, right)
+            _minThumb.center = CGPointMake(left, _minThumb.center.y)
+            
+            self.selectedMinimumValue = self.valueForX(_minThumb.center.x)
+            print("upper value is now \(self.selectedMaximumValue)")
+            print("lower value is now \(self.selectedMinimumValue)")
+        }
+        if _maxThumbOn {
+            let maximumX = self.xForValue(self.maximumValue)
+            
+            _maxThumb.center = CGPointMake(min(max(self.xForValue(self.selectedMinimumValue + self.minimumRange), touchPoint.x), maximumX), _maxThumb.center.y)
+            
+            self.selectedMaximumValue = self.valueForX(_maxThumb.center.x)
+            print("upper value is now \(self.selectedMaximumValue)")
+        }
+        self.setNeedsDisplay()
+        
+        return true
+    }
+    
 }
+
+
+
+
+
+
+
+
