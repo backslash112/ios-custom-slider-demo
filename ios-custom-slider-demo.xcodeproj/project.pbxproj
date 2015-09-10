@@ -14,6 +14,7 @@
 		C3FFB4461BA1240900D4FA3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3FFB4441BA1240900D4FA3C /* LaunchScreen.storyboard */; };
 		C3FFB4511BA1240900D4FA3C /* ios_custom_slider_demoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FFB4501BA1240900D4FA3C /* ios_custom_slider_demoTests.swift */; };
 		C3FFB45C1BA1240900D4FA3C /* ios_custom_slider_demoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FFB45B1BA1240900D4FA3C /* ios_custom_slider_demoUITests.swift */; };
+		C3FFB46A1BA1255500D4FA3C /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FFB4691BA1255500D4FA3C /* RangeSlider.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		C3FFB4571BA1240900D4FA3C /* ios-custom-slider-demoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-custom-slider-demoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3FFB45B1BA1240900D4FA3C /* ios_custom_slider_demoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_custom_slider_demoUITests.swift; sourceTree = "<group>"; };
 		C3FFB45D1BA1240900D4FA3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3FFB4691BA1255500D4FA3C /* RangeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				C3FFB4421BA1240900D4FA3C /* Assets.xcassets */,
 				C3FFB4441BA1240900D4FA3C /* LaunchScreen.storyboard */,
 				C3FFB4471BA1240900D4FA3C /* Info.plist */,
+				C3FFB4691BA1255500D4FA3C /* RangeSlider.swift */,
 			);
 			path = "ios-custom-slider-demo";
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3FFB43E1BA1240900D4FA3C /* ViewController.swift in Sources */,
+				C3FFB46A1BA1255500D4FA3C /* RangeSlider.swift in Sources */,
 				C3FFB43C1BA1240900D4FA3C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,7 +351,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -385,7 +389,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -396,6 +400,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "ios-custom-slider-demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yangcun.ios-custom-slider-demo";
@@ -407,6 +412,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "ios-custom-slider-demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yangcun.ios-custom-slider-demo";
