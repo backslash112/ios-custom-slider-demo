@@ -34,7 +34,7 @@ class RangeSlider: UIControl {
     var _track: UIImageView!
     var _trackBackground: UIImageView!
     
-    var popValue: PopView!
+    var popView: PopView!
     
     func xForValue(value: CGFloat) -> CGFloat {
         return  (self.frame.size.width - _padding*2) * (value - minimumValue) / (maximumValue - minimumValue) + _padding
@@ -98,7 +98,7 @@ class RangeSlider: UIControl {
 
     func initMinThumb() {
         _minThumb = UIImageView(image: UIImage(named: "tm_handle_start"))
-        _minThumb.center = CGPointMake(self.popValue.frame.width + (_minThumb.frame.width / 2), self.yForValue(self.selectedMinimumValue))
+        _minThumb.center = CGPointMake(self.popView.frame.width + (_minThumb.frame.width / 2), self.yForValue(self.selectedMinimumValue))
         self.addSubview(_minThumb)
     }
     
@@ -111,16 +111,17 @@ class RangeSlider: UIControl {
     func initMaxThumb() {
         _maxThumb = UIImageView(image: UIImage(named: "tm_handle_end"))
         
-        _maxThumb.center = CGPointMake(self.popValue.frame.width + (_maxThumb.frame.width / 2), self.yForValue(self.selectedMaximumValue))
+        _maxThumb.center = CGPointMake(self.popView.frame.width + (_maxThumb.frame.width / 2), self.yForValue(self.selectedMaximumValue))
         self.addSubview(_maxThumb)
     }
     
     func initPopValue() {
         
-        self.popValue = PopView(image: UIImage(named: "time-machine_popValue_bg"))
-        self.popValue.sizeToFit()
-        self.popValue.hidden = true
-        self.addSubview(self.popValue)
+        self.popView = PopView(image: UIImage(named: "time-machine_popValue_bg"))
+        self.popView.sizeToFit()
+        self.popView.hidden = true
+        self.popView.center = CGPointMake(self.popView.frame.width/2, 0)
+        self.addSubview(self.popView)
     }
     
     // MARK: - Tracking Touch
@@ -129,14 +130,14 @@ class RangeSlider: UIControl {
         let touchPoint = touch.locationInView(self)
         if CGRectContainsPoint(_minThumb.frame, touchPoint) {
             _minThumbOn = true
-            self.popValue.hidden = false
-            self.popValue.center = CGPointMake(self.popValue.frame.width/2, _minThumb.center.y)
-            self.popValue.popValue = "\(_minThumb.center.y)"
+            self.popView.hidden = false
+            self.popView.center = CGPointMake(self.popView.center.x, _minThumb.center.y)
+            self.popView.popValue = "\(_minThumb.center.y)"
         } else if CGRectContainsPoint(_maxThumb.frame, touchPoint) {
             _maxThumbOn = true
-            self.popValue.hidden = false
-            self.popValue.center = CGPointMake(self.popValue.frame.width/2, _maxThumb.center.y)
-            self.popValue.popValue = "\(_maxThumb.center.y)"
+            self.popView.hidden = false
+            self.popView.center = CGPointMake(self.popView.center.x, _maxThumb.center.y)
+            self.popView.popValue = "\(_maxThumb.center.y)"
         }
         return true
     }
@@ -144,7 +145,7 @@ class RangeSlider: UIControl {
     override func endTrackingWithTouch(touch: UITouch?, withEvent event: UIEvent?) {
         _minThumbOn = false
         _maxThumbOn = false
-        self.popValue.hidden = true
+        self.popView.hidden = true
     }
     
 //    override func continueTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
@@ -199,9 +200,9 @@ class RangeSlider: UIControl {
             
             self.selectedMinimumValue = self.valueForY(_minThumb.center.y)
             
-            self.popValue.hidden = false
-            self.popValue.center = CGPointMake(self.popValue.frame.width/2, _minThumb.center.y)
-            self.popValue.popValue = "\(_minThumb.center.y)"
+            self.popView.hidden = false
+            self.popView.center = CGPointMake(self.popView.center.x, _minThumb.center.y)
+            self.popView.popValue = "\(_minThumb.center.y)"
             
             
         }
@@ -212,9 +213,9 @@ class RangeSlider: UIControl {
             
             self.selectedMaximumValue = self.valueForY(_maxThumb.center.y)
             
-            self.popValue.hidden = false
-            self.popValue.center = CGPointMake(self.popValue.frame.width/2, _maxThumb.center.y)
-            self.popValue.popValue = "\(_maxThumb.center.y)"
+            self.popView.hidden = false
+            self.popView.center = CGPointMake(self.popView.center.x, _maxThumb.center.y)
+            self.popView.popValue = "\(_maxThumb.center.y)"
         }
         self.setNeedsDisplay()
         
