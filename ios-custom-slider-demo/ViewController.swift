@@ -16,6 +16,7 @@ class ViewController: UIViewController {
         
         self.initRangeSlider()
         self.view.addSubview(self.slider)
+        self.view.backgroundColor = UIColor.grayColor()
     }
     
     var slider: RangeSlider!
@@ -26,7 +27,7 @@ class ViewController: UIViewController {
         self.slider.maximumValue = 500
         self.slider.selectedMaximumValue = 500
         slider.minimumRange = 1
-        slider.initWithFrame2(frame: CGRectMake((self.view.frame.width-50)/2, 0, 50, self.view.frame.height))
+        slider.initWithFrame2(frame: CGRectMake((463-100)/2, (self.view.frame.height - 463)/2, 133,463))
         
     }
     

@@ -27,12 +27,14 @@ class RangeSlider: UIControl {
     var _maxThumbOn = false
     var _minThumbOn = false
     
-    var _padding: CGFloat = 20
+    var _padding: CGFloat = 11
     
     var _minThumb: UIImageView!
     var _maxThumb: UIImageView!
     var _track: UIImageView!
     var _trackBackground: UIImageView!
+    
+    var popValue: PopView!
     
     func xForValue(value: CGFloat) -> CGFloat {
         return  (self.frame.size.width - _padding*2) * (value - minimumValue) / (maximumValue - minimumValue) + _padding
@@ -52,14 +54,14 @@ class RangeSlider: UIControl {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.yellowColor()
+        self.backgroundColor = UIColor.blackColor()
         
     }
 
     func initWithFrame2(frame frame: CGRect) {
         self.frame = frame
         self.initBackground()
-        self.initHeighlight()
+        self.initPopValue()
         self.initMaxThumb()
         self.initMinThumb()
     }
@@ -69,9 +71,9 @@ class RangeSlider: UIControl {
     }
     
     func initBackground() {
-        _trackBackground = UIImageView(image: UIImage(named: "bar-background"))
+        _trackBackground = UIImageView(image: UIImage(named: "tm_bar-background"))
         _trackBackground.frame = CGRectMake(
-            (self.frame.width - _trackBackground.frame.width)/2,
+            self.frame.width - _trackBackground.frame.width,
             _padding,
             _trackBackground.frame.width,
             self.frame.height - _padding*2)
@@ -95,8 +97,8 @@ class RangeSlider: UIControl {
 //    }
 
     func initMinThumb() {
-        _minThumb = UIImageView(image: UIImage(named: "handle"))
-        _minThumb.center = CGPointMake(self.frame.size.width/2, self.yForValue(self.selectedMinimumValue))
+        _minThumb = UIImageView(image: UIImage(named: "tm_handle_start"))
+        _minThumb.center = CGPointMake(self.popValue.frame.width + (_minThumb.frame.width / 2), self.yForValue(self.selectedMinimumValue))
         self.addSubview(_minThumb)
     }
     
@@ -107,9 +109,18 @@ class RangeSlider: UIControl {
 //    }
 
     func initMaxThumb() {
-        _maxThumb = UIImageView(image: UIImage(named: "handle"))
-        _maxThumb.center = CGPointMake(self.frame.size.width/2, self.yForValue(self.selectedMaximumValue))
+        _maxThumb = UIImageView(image: UIImage(named: "tm_handle_end"))
+        
+        _maxThumb.center = CGPointMake(self.popValue.frame.width + (_maxThumb.frame.width / 2), self.yForValue(self.selectedMaximumValue))
         self.addSubview(_maxThumb)
+    }
+    
+    func initPopValue() {
+        
+        self.popValue = PopView(image: UIImage(named: "time-machine_popValue_bg"))
+        self.popValue.sizeToFit()
+        self.popValue.hidden = true
+        self.addSubview(self.popValue)
     }
     
     // MARK: - Tracking Touch
@@ -118,8 +129,14 @@ class RangeSlider: UIControl {
         let touchPoint = touch.locationInView(self)
         if CGRectContainsPoint(_minThumb.frame, touchPoint) {
             _minThumbOn = true
+            self.popValue.hidden = false
+            self.popValue.center = CGPointMake(self.popValue.frame.width/2, _minThumb.center.y)
+            self.popValue.popValue = "\(_minThumb.center.y)"
         } else if CGRectContainsPoint(_maxThumb.frame, touchPoint) {
             _maxThumbOn = true
+            self.popValue.hidden = false
+            self.popValue.center = CGPointMake(self.popValue.frame.width/2, _maxThumb.center.y)
+            self.popValue.popValue = "\(_maxThumb.center.y)"
         }
         return true
     }
@@ -127,6 +144,7 @@ class RangeSlider: UIControl {
     override func endTrackingWithTouch(touch: UITouch?, withEvent event: UIEvent?) {
         _minThumbOn = false
         _maxThumbOn = false
+        self.popValue.hidden = true
     }
     
 //    override func continueTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
@@ -180,6 +198,12 @@ class RangeSlider: UIControl {
             _minThumb.center = CGPointMake(_minThumb.center.x, left)
             
             self.selectedMinimumValue = self.valueForY(_minThumb.center.y)
+            
+            self.popValue.hidden = false
+            self.popValue.center = CGPointMake(self.popValue.frame.width/2, _minThumb.center.y)
+            self.popValue.popValue = "\(_minThumb.center.y)"
+            
+            
         }
         if _maxThumbOn {
             let maximumY = self.yForValue(self.maximumValue)
@@ -187,6 +211,10 @@ class RangeSlider: UIControl {
             _maxThumb.center = CGPointMake(_maxThumb.center.x, min(max(self.yForValue(self.selectedMinimumValue + self.minimumRange), touchPoint.y), maximumY))
             
             self.selectedMaximumValue = self.valueForY(_maxThumb.center.y)
+            
+            self.popValue.hidden = false
+            self.popValue.center = CGPointMake(self.popValue.frame.width/2, _maxThumb.center.y)
+            self.popValue.popValue = "\(_maxThumb.center.y)"
         }
         self.setNeedsDisplay()
         

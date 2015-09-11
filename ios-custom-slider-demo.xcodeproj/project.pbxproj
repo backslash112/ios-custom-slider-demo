@@ -15,6 +15,7 @@
 		C3FFB4511BA1240900D4FA3C /* ios_custom_slider_demoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FFB4501BA1240900D4FA3C /* ios_custom_slider_demoTests.swift */; };
 		C3FFB45C1BA1240900D4FA3C /* ios_custom_slider_demoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FFB45B1BA1240900D4FA3C /* ios_custom_slider_demoUITests.swift */; };
 		C3FFB46A1BA1255500D4FA3C /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FFB4691BA1255500D4FA3C /* RangeSlider.swift */; settings = {ASSET_TAGS = (); }; };
+		C3FFB46C1BA2865400D4FA3C /* PopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FFB46B1BA2865400D4FA3C /* PopView.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		C3FFB45B1BA1240900D4FA3C /* ios_custom_slider_demoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_custom_slider_demoUITests.swift; sourceTree = "<group>"; };
 		C3FFB45D1BA1240900D4FA3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3FFB4691BA1255500D4FA3C /* RangeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
+		C3FFB46B1BA2865400D4FA3C /* PopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				C3FFB4441BA1240900D4FA3C /* LaunchScreen.storyboard */,
 				C3FFB4471BA1240900D4FA3C /* Info.plist */,
 				C3FFB4691BA1255500D4FA3C /* RangeSlider.swift */,
+				C3FFB46B1BA2865400D4FA3C /* PopView.swift */,
 			);
 			path = "ios-custom-slider-demo";
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			files = (
 				C3FFB43E1BA1240900D4FA3C /* ViewController.swift in Sources */,
 				C3FFB46A1BA1255500D4FA3C /* RangeSlider.swift in Sources */,
+				C3FFB46C1BA2865400D4FA3C /* PopView.swift in Sources */,
 				C3FFB43C1BA1240900D4FA3C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
